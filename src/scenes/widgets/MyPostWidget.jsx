@@ -145,7 +145,7 @@ const MyPostWidget = ({ picturePath }) => {
           onClick={handlePost}
           sx={{
             color: palette.background.alt,
-            backgroundColor: palette.primary.main,
+            backgroundColor: palette.primary.light,
             borderRadius: "3rem",
             padding: "6px 16px",
           }}

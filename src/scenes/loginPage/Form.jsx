@@ -17,27 +17,25 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
+  fullName: yup.string().required("Имя обязательно для регистрации"),
+  username: yup.string().required("Юзернейм обязателен для регистрации"),
+  email: yup.string().email("Недопустимый формат. example@gmail.com").required("Почта обязательна для регистрации"),
+  password: yup.string().required("Пароль обязателен для регистрации"),
+  bio: yup.string().required("required"),
   picture: yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
+  email: yup.string().email("Недопустимый формат. example@gmail.com").required("Почта обязательна для входа"),
+  password: yup.string().required("Пароль обязателен для входа"),
 });
 
 const initialValuesRegister = {
-  firstName: "",
-  lastName: "",
+  fullName: "",
+  username: "",
   email: "",
   password: "",
-  location: "",
-  occupation: "",
+  bio: "",
   picture: "",
 };
 
@@ -130,53 +128,45 @@ const Form = () => {
             {isRegister && (
               <>
                 <TextField
-                  label="Имя"
+                  label="Полное имя *"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.firstName}
-                  name="firstName"
+                  value={values.fullName}
+                  name="fullName"
                   error={
-                    Boolean(touched.firstName) && Boolean(errors.firstName)
+                    Boolean(touched.fullName) && Boolean(errors.fullName)
                   }
-                  helperText={touched.firstName && errors.firstName}
+                  helperText={touched.fullName && errors.fullName}
+                  sx={{ gridColumn: "span 2",}}
+                  borderRadius="36px"
+                />
+                <TextField
+                  label="Юзернейм *"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.username}
+                  name="username"
+                  error={Boolean(touched.username) && Boolean(errors.username)}
+                  helperText={touched.username && errors.username}
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Фамилия"
+                  label="Описание до 128 символов"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.lastName}
-                  name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
-                  sx={{ gridColumn: "span 2" }}
-                />
-                <TextField
-                  label="Место"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.location}
-                  name="location"
-                  error={Boolean(touched.location) && Boolean(errors.location)}
-                  helperText={touched.location && errors.location}
-                  sx={{ gridColumn: "span 4" }}
-                />
-                <TextField
-                  label="Работа"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.occupation}
-                  name="occupation"
+                  value={values.bio}
+                  name="bio"
                   error={
-                    Boolean(touched.occupation) && Boolean(errors.occupation)
+                    Boolean(touched.bio) && Boolean(errors.bio)
                   }
-                  helperText={touched.occupation && errors.occupation}
+                  helperText={touched.bio && errors.bio}
                   sx={{ gridColumn: "span 4" }}
+                  borderRadius="12px"
                 />
                 <Box
                   gridColumn="span 4"
                   border={`1px solid ${palette.neutral.medium}`}
-                  borderRadius="5px"
+                  borderRadius="12px"
                   p="1rem"
                 >
                   <Dropzone
@@ -210,17 +200,17 @@ const Form = () => {
             )}
 
             <TextField
-              label="Эл. почта"
+              label="Эл. почта *"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.email}
               name="email"
               error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
-              sx={{ gridColumn: "span 4" }}
+              sx={{ gridColumn: "span 2" }}
             />
             <TextField
-              label="Пароль"
+              label="Пароль *"
               type="password"
               onBlur={handleBlur}
               onChange={handleChange}
@@ -228,7 +218,7 @@ const Form = () => {
               name="password"
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
-              sx={{ gridColumn: "span 4" }}
+              sx={{ gridColumn: "span 2" }}
             />
           </Box>
 

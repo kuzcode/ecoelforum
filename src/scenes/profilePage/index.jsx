@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
   return (
     <Box>
-      <Navbar />
+    
       <Box
         width="100%"
         padding="2rem 6%"
@@ -50,7 +50,6 @@ const ProfilePage = () => {
         >
           <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
-          <PostsWidget userId={userId} isProfile />
         </Box>
       </Box>
     </Box>

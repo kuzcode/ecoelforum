@@ -12,7 +12,7 @@ const HomePage = () => {
 
   return (
     <Box>
-      <Navbar />
+      
       <Box
         width="100%"
         padding="2rem 6%"
@@ -28,7 +28,7 @@ const HomePage = () => {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           <MyPostWidget picturePath={picturePath} />
-          <PostsWidget userId={_id} />
+          
         </Box>
       </Box>
     </Box>
